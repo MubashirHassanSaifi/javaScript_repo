@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Practice</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style type="text/css">
+      .frmTbl { font-family: verdana;
+    font-size: 8pt;
+    color:black;
+    font-variant: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    text-align: left;
+    font-weight: bold;
+    
+}
+.Arial_4C8966 {
+    font-family: Arial;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+}
+.txtbox {
+    font-family: Arial;
+    font-size: 11px;
+    background-color: #F6F6EB;
+    width: 200PX;
+    height: 18px;
+    border: 1px solid #F3372A;
+    font-size: 8pt;
+}
+
+
+        </style>
+
+</head>
+<body>
+    <h1 style="align-items: center;">
+        <fieldset style="width: 95%;">
+            <legend style="align-items: center;text-align: center;font-weight: bold; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> 
+                Java Scripts Practice
+            </legend>
+       <h1 id='header'>
+           Java
+       </h1> 
+        <form id=''>
+<label style="font-size: small;font-weight: bold;">Employee ID&nbsp;:&nbsp;</label>
+            <input type='text' style='width:200px;' id='EmpId' size="10" value=''/>
+            <br>
+            <br>
+            <table border="0" cellpadding="2" cellspacing="0" style="width: 100%" id="dynamicInput" >
+                <tr>
+                    <td colspan="6" height="5"></td>
+                    </tr>
+
+                   <tr class="frmTbl">
+                <td width="17%" align="center" >EmployeeCode</td>
+                <td width="17%" align="center" >Name</td>
+                 <td width="17%" align="center" >Designation</td>
+                 <td width="17%" align="center" >Department</td>
+
+                 <td width="17%" align="center" >Office</td>
+                 <td width="17%" align="center" ></td>
+                </tr>
+                       
+                       <tr id="data">
+                            <td class="Arial_4C8966" align="center" width="17%" height="20"><input name="empcode[]" type="text" class="txtbox"  id="empcode_0" size="10" onblur="showData(this.value,0);" style="width:80px"   /></td>
+                            <td class="Arial_4C8966"  align=" center" width="17%" height="20"><input name="name[]" type="text" disabled="disabled" class="txtbox"  id="name_0" size="10" style="width:120px"  /></td>
+                            <td class="Arial_4C8966" align=" center" width="17%" height="20"><input name="designation[]" type="text" disabled="disabled" class="txtbox"  id="designation_0" size="10" style="width:120px"  /></td>
+                            <td class="Arial_4C8966" align=" center" width="17%" height="20"><input name="department[]" type="text" disabled="disabled" class="txtbox" id="department_0" size="10" style="width:120px"  /></td>
+                            <td class="Arial_4C8966" align=" center" width="17%" height="20"><input name="office[]" type="text" disabled="disabled" class="txtbox" id="office_0" size="10" style="width:120px"  /></td>
+                            <td class="Arial_4C8966" align=" center" width="17%" height="20">
+                               <!--input name="button" type="button" id="0" onClick="$(this).parent().parent().remove();"  value="[-]"-->
+                               
+                               <img src="../Images/001_05.png" title="Delete Row Button" id="delRow" style="cursor:pointer; border:0px; width:16px;" alt="remove button" onclick=" $(this).parent().parent().remove();cc--;" />
+                               <input name="NewEmpID[]" type="hidden" id="NewEmpID_0"/>
+                               <input name="JDCode[]" type="hidden" id="JDCode_0"/>
+                               <input name="EmpJDID[]" type="hidden" id="EmpJDID_0"/>
+                               <input name="OldEmpJDID[]" type="hidden" id="OldEmpJDID_0"/>
+                               <input name="AttachJDCount" type="hidden" id="AttachJDCount" value="1"/>
+                            </td>
+                           
+                       </tr>
+                    
+                        
+                       
+                   <tr>
+                       <td colspan="6" height="5">&nbsp;</td>
+                       </tr>
+                       <tr>
+                           <td><input type="button" value="Add Employee" class="frmBtn" onclick="addTableRow($('#dynamicInput'));" style="font-family:Calibri; font-size:11px;height:18px; " ></td>
+                          <td> <input type="text" ID="EmpCount" value="0" CssClass="txtbox" runat="server" EnableViewState="false"  style="visibility: hidden"></input ></td>
+                        </tr>
+                        <tr>
+                            <td  class="Arial_4C8966" colspan="3" align="right" style="vertical-align: middle;" width="40%">
+                                Period&nbsp;:&nbsp;
+                            </td>
+                            <td colspan="3"align="left" width="60%">
+                                <select id="ddPeriod" width="200px" class="txtbox" onchange="showPeriod(this.value)">
+                                    <option selected>Select Period</option>
+                                    <option> All </option>
+                                    <option>2019</option>
+                                    <option>2018</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr >
+                            <td class="Arial_4C8966" align="right" colspan="3"  style="vertical-align: middle;" width="40%">
+                               Department&nbsp;:&nbsp;
+                            </td>
+                            <td align="left" colspan="3" width="60%">
+                                <select id="ddDept" name="department" class="txtbox" onchange="showDept(this.value)" >
+                                    <option selected>Select Department</option>
+                                
+                                    <option>
+                                  software Development
+                              </option>
+                              <option>
+                                  Technical
+                              </option>
+                                </select>
+                            </td>
+                        </tr>
+             
+                       
+                   </table>
+
+        </form>
+
+        </fieldset>
+
+    </h1>
+    <script src="index.js">
+        </script>
+  
+  <script>
+  let empInfo_0=[500114,'Khurran Anis','Manager','software Development','XX-Office'];  
+  let empInfo_1=[601110,'Ali','Team leader','software Development','XX-Office'];  
+  let empInfo_2=[234990,'umer','Representive','software Development','XX-Office'];    
+  let empInfo=[];
+  empInfo=empInfo+ empInfo_0.slice(",");
+  empInfo=empInfo+","+empInfo_1.slice(",");
+  empInfo=empInfo+","+empInfo_2.slice(",");
+  let EmpData;//string variable
+  EmpData=empInfo;// store array data in text form
+  empInfo=EmpData.split(",");// get text data that is split by "," and store it again into array
+  
+  let cc=1;
+
+   function addTableRow(JQtable)
+   {
+    //document.getElementById("EmpCount").value= parseInt (document.getElementById("EmpCount").value)+1;
+    //cc=document.getElementById("EmpCount").value;
+  
+  let id=cc;
+  JQtable.each(function(){
+ //========================================================
+ 
+ let data='<tr><td class="Arial_4C8966" align="center" width="17%" height="20">'+ 
+'<input type="text" name="empcode[]" class="txtbox"  id="empcode_'+id+'" size="10" onblur="showData(this.value,'+ id +');" style="width:80px"  ></td>'+
+'<td class="Arial_4C8966" align="center" width="17%" height="20">'+
+    '<input name="name[]" type="text" disabled="disabled" class="txtbox"  id="name_'+ id +'"  size="10" style="width:120px"  /></td>'+
+    '<td class="Arial_4C8966" align="center" width="17%" height="20">'+
+  '<input name="designation[]" type="text" disabled="disabled" class="txtbox"  id="designation_'+id+'" size="10" style="width:120px"  /></td>'+
+  '<td class="Arial_4C8966" align="center" width="17%" height="20">'+
+    '<input name="department[]" type="text" disabled="disabled" class="txtbox" id="department_'+id+'" size="10" style="width:120px"  /></td>'+
+    '<td class="Arial_4C8966" align="center" width="17%" height="20">'+
+        '<input name="office[]" type="text" disabled="disabled" class="txtbox" id="office_'+id+'" size="10" style="width:120px"  /></td>'+
+        '<td class="Arial_4C8966" align="center" width="17%" height="20">'+ 
+'<img src="../Images/001_05.png" title="Delete Row Button" style="cursor:pointer; border:0px; width:16px;" alt="remove button" onclick="$(this).parent().parent().remove(); cc--;" />'+
+' <input name="NewEmpID[]" type="hidden" id="NewEmpID_'+id+'"/>'+
+'<input name="JDCode[]" type="hidden" id="JDCode_'+id+'"/>'+
+'<input name="OldEmpJDID[]" type="hidden" id="OldEmpJDID_'+id+'"/>'+
+'<input name="AttachJDCount" type="hidden" id="AttachJDCount" value="1"/></td></tr>';
+
+                                  
+//========================================================
+//let $table=$(this);
+//let len=$('tr:last td',this).length;
+
+ let tds=data; 
+cc++;
+if($('tbody',this).length>1)
+{
+
+
+//$('table#dynamicInput').eq(-2).append(tds);
+$('#data').after(tds);
+}
+else
+ $('tr.frmTbl').after(tds);
+ });
+ }
+
+ //-----------------------------show data function----------------------------------------------------------------
+ function showData(value,itemId)
+ {
+if(checkDuplicate(value,itemId))
+{
+   let srchEmp=value;
+   let index;
+   let empFound=[];
+   for(let i=0;i<empInfo.length;i++)
+   {
+    if(srchEmp==empInfo[i]){
+         index=i;  //on which index value is found.
+      //  alert("employee found on index:"+index);
+        break; //get out from loop
+    }
+   
+}  // for-loop end.
+  if(index!=null){
+     let i=0;
+      for(let j=index;j<=index+4;j++)
+      {
+        empFound[i]=empInfo[j]; // get data from empInfo and fill the array
+        //alert(empFound[i]);
+        i++;
+      }
+      document.getElementById("name_"+itemId).value=empFound[1];
+   document.getElementById("designation_"+itemId).value=empFound[2];
+   document.getElementById("department_"+itemId).value=empFound[3];
+   document.getElementById("office_"+itemId).value=empFound[4];
+  }
+   else
+   {
+    //$('input[name$="name[]"]').focus();
+
+    alert("employee not found");
+    $('input[name$="empcode[]"]').focusout();
+}
+}  // if end 
+else
+alert("Employee has already entered");
+}  // function end
+//----------------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------check duplicate function---------------------------------------------
+function checkDuplicate(value,itemId)
+{
+    let totalRows=cc;
+    let vObj,valueFound=0;
+   // alert("total rows="+totalRows);
+    for(i=0;i<totalRows;i++)
+    {
+    vObj='empcode_'+i;
+ //alert("Check duplicate value");
+ //alert(vObj);
+ if(isValidObject(vObj))
+{
+    
+if(document.getElementById(vObj).value==value&& i!=itemId)
+{
+    //alert("duplicate value found");
+valueFound++;
+}
+    
+}
+
+    }
+    if(valueFound>0)    {
+return false;
+    }
+else{
+    //alert("no duplicate value found");
+    return true;
+}
+
+
+
+}
+//----------------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------isValidObject function----------------------------------------------
+function isValidObject(obj){
+    let objToTest=document.getElementById(obj);
+
+  if(objToTest==null || objToTest=='undefined')
+  {
+//      alert("invalid");
+    return false;
+  }
+ 
+  
+  else 
+  {
+//alert("valid object");
+    return true;
+  }
+}
+ //--------------------------------------------------------------------------------------------------------------
+
+ //---------------------------------- Validate Period & department------------------------------
+
+ function validatePerdiodDept(){
+   let period=document.getElementById("ddPeriod");
+   let department=document.getElementById("ddDepartment");
+    let pIdnex=period.options.selectedIndex;
+    let dIndex=department.options.selectedIndex;
+    alert(pIdnex);
+    alert(dIndex);
+ }
+ function showPeriod(val){
+   alert(val);
+    let period=document.getElementById("ddPeriod");
+switch(val){
+    case 'All':
+ alert("You have selected"+val);
+ break;
+ case '2019':
+ alert("you have selected"+val);
+ break;
+ case '2018':
+ alert("you have selected"+val);
+ break;
+defaul:
+alert (period.options[0]);
+
+
+ }
+   
+   </script>
+</body>
+</html>
